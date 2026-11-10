@@ -1,0 +1,4 @@
+/* Styling pendukung jika diperlukan, sebagian besar sudah di-handle Tailwind */
+body {
+    -webkit-tap-highlight-color: transparent;
+}
