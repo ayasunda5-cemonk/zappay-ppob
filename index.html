@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapPay - Transaksi Cepat & Cuan</title>
+    <!-- Tailwind CSS CDN untuk styling cepat & responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar -->
+    <header class="bg-indigo-600 text-white shadow-md">
+        <div class="max-w-md mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wider">⚡ ZapPay</h1>
+            <div class="text-xs bg-indigo-700 px-3 py-1.5 rounded-full font-medium">
+                Saldo: <span id="user-saldo" class="font-bold">Rp 150.000</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-md w-full mx-auto p-4 flex-grow">
+        
+        <!-- Menu Kategori PPOB -->
+        <div class="grid grid-cols-4 gap-2 mb-6">
+            <button onclick="selectCategory('pulsa')" class="cat-btn bg-indigo-50 border border-indigo-200 text-indigo-700 py-3 rounded-xl font-semibold text-xs text-center shadow-sm transition active:scale-95">Pulsa</button>
+            <button onclick="selectCategory('data')" class="cat-btn bg-white border border-gray-200 text-gray-600 py-3 rounded-xl font-semibold text-xs text-center shadow-sm transition active:scale-95">Paket Data</button>
+            <button onclick="selectCategory('pln')" class="cat-btn bg-white border border-gray-200 text-gray-600 py-3 rounded-xl font-semibold text-xs text-center shadow-sm transition active:scale-95">Token PLN</button>
+            <button onclick="selectCategory('wallet')" class="cat-btn bg-white border border-gray-200 text-gray-600 py-3 rounded-xl font-semibold text-xs text-center shadow-sm transition active:scale-95">E-Wallet</button>
+        </div>
+
+        <!-- Form Transaksi -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-6">
+            <h2 id="form-title" class="text-base font-bold text-gray-800 mb-4">Beli Pulsa Reguler</h2>
+            
+            <form id="ppob-form" onsubmit="handleTransaction(event)">
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5" id="target-label">Nomor HP / Tujuan</label>
+                    <input type="tel" id="target-input" placeholder="Contoh: 08123456789" required
+                        class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Pilih Produk</label>
+                    <select id="product-select" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="10000">Pulsa Telkomsel 10.000 - Rp 11.500</option>
+                        <option value="20000">Pulsa Telkomsel 20.000 - Rp 21.500</option>
+                        <option value="50000">Pulsa Telkomsel 50.000 - Rp 52.000</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-md transition active:scale-95 text-sm">
+                    Bayar Sekarang
+                </button>
+            </form>
+        </div>
+
+        <!-- Status Transaksi / Log Terakhir -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
+            <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Aktivitas Terakhir</h3>
+            <div id="log-container" class="text-xs text-gray-500 italic">Belum ada transaksi hari ini.</div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-xs text-gray-400">
+        ZapPay PPOB Serverless &bull; Powered by Vercel & PWA
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
